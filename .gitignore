@@ -1,0 +1,3 @@
+map/house/data/
+map/house/db.sqlite
+*.pyc

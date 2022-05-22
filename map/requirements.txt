@@ -1,0 +1,4 @@
+flask
+flask-sqlalchemy
+mac-vendor-lookup == 0.1.11
+flask-login

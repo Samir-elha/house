@@ -1,0 +1,7 @@
+#if first time execute these commands in python in the docker container to create db 
+#start terminal in docker container
+docker exec -it {name of container} /bin/bash
+
+    #execute this in the container terminal to create the database
+    from house import db, create_app, models
+    db.create_all(app=create_app()) 

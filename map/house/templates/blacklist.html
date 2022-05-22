@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h1 class="h2 center">Blacklisted Mac-Adressen </h1>
+<ul class="collection with-header">
+  <h4 class="center">Blacklisted MAC Adressen</h4>
+  {% for b in blacklist_mac %}
+  <li class="bg-light collection-item mb-2">{{b}}
+      <a onclick="remove('{{b}}')" class="btn-floating btn-medium waves-effect waves-light red ml-1"><i
+          class="material-icons"> delete </i></a>
+  </li>
+  {% endfor %}
+</ul>
+</div>
+
+<script>
+  function remove(mac) {
+    +
+    fetch("/remblack/" + mac, {
+      method: "POST"
+    });
+    window.location.reload();
+  }
+</script>
+{% endblock %}

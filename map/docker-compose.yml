@@ -1,0 +1,12 @@
+version: '3.4'
+services:
+  app: #name of app
+    network_mode: host
+    build:
+      context: .
+      dockerfile: Dockerfile #build image from Dockerfile
+    ports:
+      - "5000:5000" # Forward the exposed port 5000 on the container to port 5000 on the host machine
+    restart: unless-stopped # restart if stopped
+    volumes:
+      - .:/app #volume to add

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="header center orange-text">{{ header }}</h1>
+<ul class="collection with-header">
+    <h4 class="center">MAC - ONLINE</h4>
+    <p class="center">Mac-address;name</p>
+    <hr>
+    {% for m in mac_list %}
+    <li class="bg-light collection-item mb-2">{{m}}
+    </li>
+    {% endfor %}
+</ul>
+
+<ul class="collection with-header">
+    <h4 class="center">MAC - OFFLINE</h4>
+    <p class="center">Mac-address;name</p>
+    <hr>
+    {% for m in offline %}
+    <li class="bg-light collection-item mb-2">{{m}}
+    </li>
+    {% endfor %}
+</ul>
+
+<ul class="collection with-header">
+    <h4 class="center">NEW MAC LIST</h4>
+    <p class="center">Mac-address;hostname;vendorname</p>
+    <hr>
+    {% for x in new_mac %}
+    <li class=" row bg-light collection-item">{{x}}
+        <form class="col-12" id="myform" method="POST">
+            <input type="text" name='name' id='name' placeholder='Name' />
+            <input type="hidden" name="mac_val" value="{{x}}">
+            <!-- <a onclick='add()' href="/" type="submit" id="submit"
+                class="btn-floating btn-medium waves-effect waves-light light-green"><i
+                    class="material-icons">add_circle</i></a> -->
+            <a onclick='this.closest("form").submit(); return false;' href="/" type="submit" id="submit"
+                class="btn-floating btn-medium waves-effect waves-light light-green"><i
+                    class="material-icons">add_circle</i></a>
+            <a onclick="black('{{x}}')" class="btn-floating btn-medium waves-effect waves-light red ml-1"><i
+                    class="material-icons">delete</i></a>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+</div>
+
+<script>
+    function black(mac) {
+        fetch("/blacklist/" + mac, {
+            method: "POST"
+        })
+        window.location.reload()
+    }
+    function add(){
+        fetch("/add_know/",{
+            method: "POST"
+        })
+    }
+</script>
+{% endblock %}
